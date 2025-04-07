@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Features - Zphisher</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      background: url('anonymous-hacker-full-hd-77zmnbcduo3a52fx.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      min-height: 100vh;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav h1 {
+      color: #00f7ff;
+      font-weight: 700;
+      font-size: 28px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #00f7ff;
+    }
+
+    .profile {
+      position: relative;
+    }
+
+    .profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #00f7ff;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: white;
+      color: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      display: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      min-width: 140px;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #000;
+      transition: background 0.3s ease;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .features-container {
+      max-width: 900px;
+      margin: 100px auto;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    .features-container h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #00f7ff;
+    }
+
+    .features-container ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .features-container li {
+      font-size: 18px;
+      margin-bottom: 12px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .features-container li::before {
+      content: '\2022';
+      color: #00f7ff;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>Zphisher</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="features.html">Features</a></li>
+    </ul>
+    <div class="profile" onclick="toggleDropdown()">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon">
+      <div class="dropdown" id="profileDropdown">
+        <a href="login.html">Login</a>
+        <a href="signup.html">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="features-container">
+    <h2>Key Features of Zphisher</h2>
+    <ul>
+      <li>Prebuilt phishing templates for popular platforms (Instagram, Twitter, PayPal, etc.).</li>
+      <li>One-click attack simulation with a responsive UI.</li>
+      <li>Custom domain spoofing support for realism.</li>
+      <li>Logging and IP tracking capabilities for research purposes.</li>
+      <li>Educational tool for security awareness training and penetration testing.</li>
+      <li>Modern responsive design with accessibility in mind.</li>
+    </ul>
+  </div>
+
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("profileDropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    window.onclick = function (e) {
+      if (!e.target.closest('.profile')) {
+        document.getElementById("profileDropdown").style.display = "none";
+      }
+    };
+  </script>
+</body>
+</html>

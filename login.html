@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Signup - Zphisher</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      background: url('anonymous-hacker-full-hd-77zmnbcduo3a52fx.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      min-height: 100vh;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+    }
+
+    nav h1 {
+      color: #00f7ff;
+      font-weight: 700;
+      font-size: 28px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #00f7ff;
+    }
+
+    .profile {
+      position: relative;
+    }
+
+    .profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #00f7ff;
+    }
+
+    .auth-container {
+      max-width: 400px;
+      margin: 100px auto;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    }
+
+    .auth-container h2 {
+      text-align: center;
+      color: #00f7ff;
+      margin-bottom: 30px;
+    }
+
+    .auth-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .auth-container button {
+      width: 100%;
+      padding: 12px;
+      background: #00f7ff;
+      color: black;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s ease;
+    }
+
+    .auth-container button:hover {
+      background: #00d8e0;
+    }
+
+    .auth-container p {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .auth-container p a {
+      color: #00f7ff;
+      text-decoration: none;
+    }
+
+    .auth-container p a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>Zphisher</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="features.html">Features</a></li>
+    </ul>
+    <div class="profile">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon">
+    </div>
+  </nav>
+
+  <div class="auth-container" id="loginForm">
+    <h2>Login</h2>
+    <input type="text" placeholder="Username" />
+    <input type="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p>Don't have an account? <a href="#" onclick="switchForm('signup')">Sign Up</a></p>
+  </div>
+
+  <div class="auth-container" id="signupForm" style="display: none;">
+    <h2>Sign Up</h2>
+    <input type="text" placeholder="Username" />
+    <input type="email" placeholder="Email" />
+    <input type="password" placeholder="Password" />
+    <button>Sign Up</button>
+    <p>Already have an account? <a href="#" onclick="switchForm('login')">Login</a></p>
+  </div>
+  <script>
+    function switchForm(type) {
+      const loginForm = document.getElementById('loginForm');
+      const signupForm = document.getElementById('signupForm');
+      if (type === 'signup') {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+      } else {
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+      }
+    }
+  
+    function signup() {
+      const username = document.querySelector('#signupForm input[type="text"]').value;
+      const email = document.querySelector('#signupForm input[type="email"]').value;
+      const password = document.querySelector('#signupForm input[type="password"]').value;
+  
+      fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }),
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message || 'Signup success!');
+        switchForm('login');
+      })
+      .catch(err => console.error(err));
+    }
+  
+    function login() {
+      const username = document.querySelector('#loginForm input[type="text"]').value;
+      const password = document.querySelector('#loginForm input[type="password"]').value;
+  
+      if (!username || !password) {
+        alert('Please enter both username and password');
+        return;
+      }
+
+      fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      })
+      .then(res => res.json())
+      .then(data => {
+        // Set login status
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', username);
+        
+        // Redirect to index.html
+        window.location.href = 'index.html';
+      })
+      .catch(err => {
+        console.error('Login error:', err);
+        alert('Login failed. Please try again.');
+      });
+    }
+  
+    // Attach the login and signup functions to the buttons
+    document.querySelector('#loginForm button').addEventListener('click', login);
+    document.querySelector('#signupForm button').addEventListener('click', signup);
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Zphisher</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      background: url('anonymous-hacker-full-hd-77zmnbcduo3a52fx.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      min-height: 100vh;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav h1 {
+      color: #00f7ff;
+      font-weight: 700;
+      font-size: 28px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #00f7ff;
+    }
+
+    .profile {
+      position: relative;
+    }
+
+    .profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #00f7ff;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: white;
+      color: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      display: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      min-width: 140px;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #000;
+      transition: background 0.3s ease;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .about-container {
+      max-width: 800px;
+      margin: 100px auto;
+      background: rgba(0, 0, 0, 0.7); /* Darker background for visibility */
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+      color: #ffffff; /* Ensure text is light */
+    }
+
+    .about-container h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #00f7ff;
+    }
+
+    .about-container p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>Zphisher</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="features.html">Features</a></li>
+    </ul>
+    <div class="profile" onclick="toggleDropdown()">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon">
+      <div class="dropdown" id="profileDropdown">
+        <a href="login.html">Login</a>
+        <a href="signup.html">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="about-container">
+    <h2>About Zphisher</h2>
+    <p>Zphisher is a powerful phishing tool used for social engineering research, security awareness, and testing. It provides a variety of well-designed phishing templates such as Instagram, Twitter, PayPal, and Snapchat to simulate real-world phishing scenarios.</p>
+
+    <p>This tool is built for educational and ethical hacking purposes only. It is intended to help security professionals understand and mitigate phishing attacks by demonstrating how easily users can be fooled by familiar user interfaces.</p>
+
+    <p>Please use this responsibly and only in environments where you have permission to test.</p>
+  </div>
+
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("profileDropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    window.onclick = function (e) {
+      if (!e.target.closest('.profile')) {
+        document.getElementById("profileDropdown").style.display = "none";
+      }
+    };
+  </script>
+</body>
+</html>

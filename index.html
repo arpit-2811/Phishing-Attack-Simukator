@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zphisher</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      background: url('anonymous-hacker-full-hd-77zmnbcduo3a52fx.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: white;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav h1 {
+      color: #00f7ff;
+      font-weight: 700;
+      font-size: 28px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #00f7ff;
+    }
+
+    .profile {
+      position: relative;
+    }
+
+    .profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #00f7ff;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: white;
+      color: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      display: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      min-width: 140px;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #000;
+      transition: background 0.3s ease;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      margin: auto;
+      max-width: 400px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      text-align: center;
+      color: #fff;
+      margin-top: 100px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    }
+
+    .container h2 {
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+
+    select {
+      background: rgba(255, 255, 255, 0.7);
+      color: #000;
+    }
+
+    button {
+      background-color: #00f7ff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #00d1d1;
+    }
+
+    pre {
+      margin-top: 20px;
+      text-align: left;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .container {
+        margin: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <h1>Zphisher</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>        <!-- Add your about.html -->
+      <li><a href="features.html">Features</a></li> 
+    </ul>
+    <div class="profile" onclick="toggleDropdown()">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon">
+      <div class="dropdown" id="profileDropdown">
+        <a href="login.html" id="loginOption">Login</a>
+        <a href="login.html" id="signupOption">Sign Up</a>
+        <a href="#" id="logoutOption" style="display: none;" onclick="logout()">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Interface -->
+  <div class="container">
+    <h2>Select a Phishing Template</h2>
+    <select id="template">
+      <option value="Instagram">Instagram</option>
+      <option value="Twitter">Twitter</option>
+      <option value="Paypal">PayPal</option>
+      <option value="Snapchat">Snapchat</option>
+    </select>
+    <button id="startBtn">Start Attack</button>
+    <pre id="output"></pre>
+  </div>
+
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("profileDropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    window.onclick = function (e) {
+      if (!e.target.closest('.profile')) {
+        document.getElementById("profileDropdown").style.display = "none";
+      }
+    };
+
+    document.getElementById("startBtn").addEventListener("click", function () {
+      const template = document.getElementById("template").value;
+      document.getElementById("output").innerText = `Starting phishing attack using ${template} template...`;
+
+      if (template === "Instagram") window.location.href = "instagram/login.html";
+      if (template === "Twitter") window.location.href = "twitter/login.html";
+      if (template === "Paypal") window.location.href = "paypal/login.html";
+      if (template === "Snapchat") window.location.href = "snapchat/login.html";
+    });
+
+    function checkLoginStatus() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        
+        const loginOption = document.getElementById('loginOption');
+        const signupOption = document.getElementById('signupOption');
+        const logoutOption = document.getElementById('logoutOption');
+        
+        if (isLoggedIn) {
+            loginOption.style.display = 'none';
+            signupOption.style.display = 'none';
+            logoutOption.style.display = 'block';
+        } else {
+            loginOption.style.display = 'block';
+            signupOption.style.display = 'block';
+            logoutOption.style.display = 'none';
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('isLoggedIn');
+        
+        localStorage.removeItem('username');
+        
+        window.location.href = 'login.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', checkLoginStatus);
+  </script>
+
+</body>
+</html>
